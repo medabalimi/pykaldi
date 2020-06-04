@@ -32,7 +32,7 @@ RUN apt-get update \
     zlib1g-dev
 
 # Install systems protobuf
-RUN apt-get install -y libprotobuf-dev libprotobuf-c-dev protobuf-c-compiler protobuf-compiler
+#RUN apt-get install -y libprotobuf-dev libprotobuf-c-dev protobuf-c-compiler protobuf-compiler
 
 # Make python3.7 default
 RUN ln -sf /usr/bin/python3.7 /usr/bin/python3 \
@@ -56,6 +56,7 @@ COPY . /pykaldi
 # Install CLIF, Kaldi and PyKaldi
 RUN cd /pykaldi/tools \
     && ./check_dependencies.sh \
+    && ./install_protobuf.sh \
     && ./install_clif.sh \
     && ./install_kaldi.sh \
     && cd .. \
